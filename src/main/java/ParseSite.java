@@ -1,7 +1,9 @@
+import com.gargoylesoftware.htmlunit.SilentCssErrorHandler;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +11,10 @@ import java.util.List;
 
 public class ParseSite {
 
+
     public void parseSite(String ali_Url) {
         WebClient client = new WebClient();
+        client.setCssErrorHandler(new SilentCssErrorHandler());
         client.getOptions().setJavaScriptEnabled(false);
 
         //String ali_Url = "https://flashdeals.aliexpress.com/en.htm";
