@@ -1,24 +1,27 @@
 import java.io.*;
 import java.net.URISyntaxException;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args) throws URISyntaxException {
 
         WriteCSV writeCSV = new WriteCSV();
         ParseSite parseSite = new ParseSite();
         JsonPars jsonPars = new JsonPars();
+        int ofset;
 
+        for ( ofset = 0; ; ofset+=12) {
+            writeCSV.writeData(jsonPars.getItemJeson(parseSite.fetch_String(parseSite.parseSite(parseSite.createUri(ofset)))));
+           if (jsonPars.count_Item >= 99)break;
+        }
 
-        System.out.println(parseSite.parseSite(parseSite.createUri(0)));
-
-        writeCSV.writeData(jsonPars.getItemJeson("parseSite.fetch_String(parseSite.parseSite(parseSite.createUri(0)))"));
+        while (true) {
+            writeCSV.writeData(jsonPars.getItemJeson(parseSite.fetch_String(parseSite.parseSite(parseSite.createUri(ofset)))));
+            ofset+=12;
+           if (jsonPars.count_Item >=99) break;
+        }
 
         file_reader("Data.csv");
 
-
-        //parseSite.parseSite("https://flashdeals.aliexpress.com/en.htm");
     }
 
     public static void file_reader(String name_File){
