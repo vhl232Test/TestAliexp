@@ -1,77 +1,46 @@
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-
 import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException, IOException {
 
         WriteCSV writeCSV = new WriteCSV();
         ParseSite parseSite = new ParseSite();
         JsonPars jsonPars = new JsonPars();
-       /* try {
-            parseSite.parseSite(parseSite.createUri(0));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }*/
 
 
-        //Item [] itemMass = new Item[3];
-        List<Item> itemMass = new LinkedList<>();
-        try {
-            itemMass.add(jsonPars.getItemJeson(parseSite.parseSite(parseSite.createUri(0))));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        System.out.println(parseSite.parseSite(parseSite.createUri(0)));
 
-        writeCSV.writeData(itemMass);
+        writeCSV.writeData(jsonPars.getItemJeson("parseSite.fetch_String(parseSite.parseSite(parseSite.createUri(0)))"));
 
-        readFileReader(new File("Data.csv"));
+        file_reader("Data.csv");
 
-        readFileBuf(new File("Data.csv"));
 
+        //parseSite.parseSite("https://flashdeals.aliexpress.com/en.htm");
     }
-    protected static void readFileBuf(File file) {
-        FileReader fileReader = null;
-        BufferedReader reader = null;
-        try {
 
+    public static void file_reader(String name_File){
+        File file = new File(name_File);
+        FileReader fileReader = null;
+        try {
             fileReader = new FileReader(file);
-            reader = new BufferedReader(fileReader);
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+        char[] faliChar = new char[1000];
+        try {
+            fileReader.read(faliChar);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileReader.close();
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
         }
-    }//некоректно работает
 
-    public static void readFileReader(File file){
+        for (char a: faliChar) {
+            System.out.println(a);
+        }
         try {
-            FileReader fileReader = new FileReader(file);
-            char[] a= new char[500];
-            fileReader.read(a);
-            for (char c:a) {
-                System.out.print(c);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            fileReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

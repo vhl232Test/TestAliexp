@@ -13,10 +13,16 @@ public class WriteCSV {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(file );
-            for (Item item_Mas : item) {
-                fileWriter.write(item_Mas.toString() + "\n");
+
+            for (int i = 0; i <item.size() ; i++) {
+                fileWriter.write(item.get(i).toString()+"\n");
                 fileWriter.flush();
             }
+
+            /*for (Item item_Mas : item) {
+                fileWriter.write(item_Mas.toString() + "\n");
+                fileWriter.flush();
+            }*/
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
