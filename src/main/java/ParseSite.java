@@ -37,7 +37,8 @@ public class ParseSite {
                 System.out.println(inputLine);
                 fetch_String(inputLine);
             }*/
-            return jeson_line = fetch_String(inputLine);
+            jeson_line = fetch_String(inputLine);
+
             bufferedReader_in.close();
 
         } catch (MalformedURLException e) {
@@ -46,6 +47,7 @@ public class ParseSite {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return jeson_line;
     }
 
 
