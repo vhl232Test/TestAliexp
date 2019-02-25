@@ -1,34 +1,50 @@
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class JsonPars {
-    public Item getItemJeson(String response){
+
+    public List item_List = new LinkedList();
+
+
+    public List getItemJeson(String response){
+
 
         JSONObject jsonObject = new JSONObject(response);
+        JSONArray jsonArray = jsonObject.getJSONArray("gpsProductDetails");
 
-        int productId = jsonObject.getInt("productId");
-        int sellerId = jsonObject.getInt("sellerId");
-        String productImage = jsonObject.getString("productImage");
-        String productDetailUrl = jsonObject.getString("productDetailUrl");
-        String productTitle = jsonObject.getString("productTitle");
-        String minPrice = jsonObject.getString("minPrice");
-        String maxPrice = jsonObject.getString("maxPrice");
-        String oriMinPrice = jsonObject.getString("oriMinPrice");
-        String oriMaxPrice = jsonObject.getString("oriMaxPrice");
-        String discount = jsonObject.getString("discount");
-        int promotionId = jsonObject.getInt("promotionId");
-        int startTime = jsonObject.getInt("startTime");
-        int endTime = jsonObject.getInt("endTime");
-        int phase = jsonObject.getInt("phase");
-        String totalStock = jsonObject.getString("totalStock");
-        String stock = jsonObject.getString("stock");
-        boolean soldout = jsonObject.getBoolean("soldout");
-        String orders = jsonObject.getString("orders");
-        String shopName = jsonObject.getString("shopName");
-        String shopUrl = jsonObject.getString("shopUrl");
-        String trace = jsonObject.getString("trace");
+        for (int i = 0; i < jsonArray.length(); i++) {
 
-        return new Item(productId,sellerId,productImage,productDetailUrl,productTitle,minPrice,maxPrice,oriMinPrice,
-                oriMaxPrice,discount,promotionId,startTime,endTime,phase,totalStock,stock,soldout,orders,
-                shopName,shopUrl,trace);
+            JSONObject aJson_Item = (JSONObject)jsonArray.get(i);
+
+            item_List.add(new Item(
+
+        aJson_Item.getInt("productId"),
+        aJson_Item.getInt("sellerId"),
+        aJson_Item.getString("productImage"),
+        aJson_Item.getString("productDetailUrl"),
+        aJson_Item.getString("productTitle"),
+        aJson_Item.getString("minPrice"),
+        aJson_Item.getString("maxPrice"),
+        aJson_Item.getString("oriMinPrice"),
+        aJson_Item.getString("oriMaxPrice"),
+        aJson_Item.getString("discount"),
+        aJson_Item.getInt("promotionId"),
+        aJson_Item.getInt("startTime"),
+        aJson_Item.getInt("endTime"),
+        aJson_Item.getInt("phase"),
+        aJson_Item.getString("totalStock"),
+        aJson_Item.getString("stock"),
+        aJson_Item.getBoolean("soldout"),
+        aJson_Item.getString("orders"),
+        aJson_Item.getString("shopName"),
+        aJson_Item.getString("shopUrl"),
+        aJson_Item.getString("trace")
+        ));
+        }
+
+        return item_List;
     }
 }

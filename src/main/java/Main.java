@@ -11,14 +11,9 @@ public class Main {
         JsonPars jsonPars = new JsonPars();
 
 
-        List list_Item = new LinkedList();
-        for (int i = 0; i <list_Item.size() ; i++) {
-            list_Item.add(i,jsonPars.getItemJeson(parseSite.fetch_String(parseSite.parseSite(parseSite.createUri(0)))));
-        }
-
         System.out.println(parseSite.parseSite(parseSite.createUri(0)));
 
-        writeCSV.writeData(list_Item);
+        writeCSV.writeData(jsonPars.getItemJeson("parseSite.fetch_String(parseSite.parseSite(parseSite.createUri(0)))"));
 
         file_reader("Data.csv");
 

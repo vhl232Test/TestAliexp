@@ -15,13 +15,13 @@ import java.util.Map;
 
 public class ParseSite {
 
-    public String parseSite(String  ali_Url) throws IOException {
+    public String parseSite(String  ali_Url) {
         //URL ali;
         String jeson_line = null;
         HttpURLConnection connection = null;
         BufferedReader bufferedReader_in = null;
         String inputLine = null;
-
+        try {
             //ali = new URL(ali_Url);
             //URLConnection urlConnection = ali.openConnection();
             connection = (HttpURLConnection) new URL(ali_Url).openConnection();
@@ -33,15 +33,27 @@ public class ParseSite {
 
             // BufferedReader bufferedReader_in = new BufferedReader(new InputStreamReader(ali.openStream()));
             bufferedReader_in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            //bufferedReader_in.close();
             inputLine = bufferedReader_in.readLine();
-            return  inputLine;
-            //while ((inputLine = bufferedReader_in.readLine()) != null) {
-                //System.out.println(inputLine);
-            //}
+            /*while ((inputLine = bufferedReader_in.readLine()) != null) {
+                System.out.println(inputLine);
+            }*/
 
 
 
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bufferedReader_in.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return jeson_line = fetch_String(inputLine);
     }
 
 
@@ -70,7 +82,7 @@ public class ParseSite {
     }
 
     protected String fetch_String(String json){
-        String subString_Json = json.substring(json.indexOf("[")+1,json.lastIndexOf("]"));
+        String subString_Json = json.substring(json.indexOf("["),json.lastIndexOf("]"));
         System.out.println(subString_Json);
         return subString_Json;
     }
