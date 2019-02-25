@@ -2,7 +2,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.sun.javafx.fxml.builder.URLBuilder;
+
 import org.apache.http.client.utils.URIBuilder;
 
 import java.io.BufferedReader;
@@ -15,12 +15,13 @@ import java.util.Map;
 
 public class ParseSite {
 
-    public String parseSite(String  ali_Url) {
+    public String parseSite(String  ali_Url) throws IOException {
         //URL ali;
-        String jeson_line = null ;
+        String jeson_line = null;
         HttpURLConnection connection = null;
         BufferedReader bufferedReader_in = null;
-        try {
+        String inputLine = null;
+
             //ali = new URL(ali_Url);
             //URLConnection urlConnection = ali.openConnection();
             connection = (HttpURLConnection) new URL(ali_Url).openConnection();
@@ -31,21 +32,16 @@ public class ParseSite {
             connection.connect();
 
             // BufferedReader bufferedReader_in = new BufferedReader(new InputStreamReader(ali.openStream()));
-             bufferedReader_in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine= bufferedReader_in.readLine();
-            /*while ((inputLine = bufferedReader_in.readLine()) != null) {
-                System.out.println(inputLine);
-                fetch_String(inputLine);
-            }*/
-            return jeson_line = fetch_String(inputLine);
-            bufferedReader_in.close();
+            bufferedReader_in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            //bufferedReader_in.close();
+            inputLine = bufferedReader_in.readLine();
+            return  inputLine;
+            //while ((inputLine = bufferedReader_in.readLine()) != null) {
+                //System.out.println(inputLine);
+            //}
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
     }
 
 
