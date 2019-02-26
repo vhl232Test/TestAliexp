@@ -259,10 +259,10 @@ public class Item {
 
     @Override
     public String toString() {
-        return  productId + sellerId + productImage +
-                 productDetailUrl +  productTitle +  minPrice + maxPrice + oriMinPrice +
-                oriMaxPrice +  discount + promotionId + startTime + endTime + phase +
-                 totalStock +  stock + soldout +
-                 orders +  shopName + shopUrl +  trace;
+        return  productId +", " + sellerId+", " + productImage+", " +
+                 productDetailUrl+", " +  productTitle+", " +  minPrice+", " + maxPrice+", " + oriMinPrice+", " +
+                oriMaxPrice+", " +  discount+", " + promotionId+", " + startTime+", " + endTime+", " + phase +
+                 totalStock+", " +  stock+", " + soldout+", " +
+                 orders+", " +  shopName+", " + shopUrl+", " +  trace;
     }
 }

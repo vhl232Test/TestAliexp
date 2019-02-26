@@ -1,4 +1,3 @@
-import com.opencsv.CSVWriter;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,15 +6,15 @@ import java.io.IOException;
 import java.util.List;
 
 public class WriteCSV {
-    protected void writeData(List item) {
+    protected void writeData(List items) {
 
         File file = new File("Data.csv");
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(file );
 
-            for (int i = 0; i <item.size() ; i++) {
-                fileWriter.write(item.get(i).toString()+"\n");
+            for (int i = 0; i <items.size() ; i++) {
+                fileWriter.write(items.get(i).toString()+"\n");
                 fileWriter.flush();
             }
 
@@ -34,7 +33,7 @@ public class WriteCSV {
         }
 
         /*BufferedWriter writer = null;
-        for (Item item_Mas:item) {
+        for (Item item_Mas:items) {
         try {
             writer = new BufferedWriter(new FileWriter(file,true));
             writer.write(item_Mas.toString().concat("\n"));

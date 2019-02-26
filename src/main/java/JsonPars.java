@@ -6,7 +6,8 @@ import java.util.List;
 
 public class JsonPars {
 
-    public List item_List = new LinkedList();
+    public int count_Item = 0;
+    public List items_List = new LinkedList();
 
 
     public List getItemJeson(String response){
@@ -19,7 +20,7 @@ public class JsonPars {
 
             JSONObject aJson_Item = (JSONObject)jsonArray.get(i);
 
-            item_List.add(new Item(
+            items_List.add(new Item(
 
         aJson_Item.getInt("productId"),
         aJson_Item.getInt("sellerId"),
@@ -43,8 +44,10 @@ public class JsonPars {
         aJson_Item.getString("shopUrl"),
         aJson_Item.getString("trace")
         ));
+            count_Item++;
+            if (count_Item>=100)break;
         }
 
-        return item_List;
+        return items_List;
     }
 }
