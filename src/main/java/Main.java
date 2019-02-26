@@ -7,12 +7,12 @@ public class Main {
         WriteCSV writeCSV = new WriteCSV();
         ParseSite parseSite = new ParseSite();
         JsonPars jsonPars = new JsonPars();
-        int ofset;
+        int ofset=0;
 
-        for ( ofset = 0; ; ofset+=12) {
+        /*for ( ofset = 0; ; ofset+=12) {
             writeCSV.writeData(jsonPars.getItemJeson(parseSite.fetch_String(parseSite.parseSite(parseSite.createUri(ofset)))));
            if (jsonPars.count_Item >= 99)break;
-        }
+        }*/
 
         while (true) {
             writeCSV.writeData(jsonPars.getItemJeson(parseSite.fetch_String(parseSite.parseSite(parseSite.createUri(ofset)))));
