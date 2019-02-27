@@ -1,34 +1,36 @@
 import java.util.Objects;
 
 public class Item {
+    public Item() {
+    }
 
-    int productId;
-    int sellerId;
-    String productImage;
-    String productDetailUrl;
-    String productTitle;
-    String minPrice;
-    String maxPrice;
-    String oriMinPrice;
-    String oriMaxPrice;
-    String discount;
-    int promotionId;
-    int startTime;
-    int endTime;
-    int phase;
-    String totalStock;
-    String stock;
-    boolean soldout;
-    String orders;
-    String shopName;
-    String shopUrl;
-    String trace;
+    private long productId;
+    private long sellerId;
+    private String productImage;
+    private String productDetailUrl;
+    private String productTitle;
+    private String minPrice;
+    private String maxPrice;
+    private String oriMinPrice;
+    private String oriMaxPrice;
+    private String discount;
+    private long promotionId;
+    private long startTime;
+    private long endTime;
+    private long phase;
+    private String totalStock;
+    private String stock;
+    private boolean soldout;
+    private String orders;
+    private String shopName;
+    private String shopUrl;
 
-    public Item(int productId, int sellerId, String productImage, String productDetailUrl,
+
+    public Item(long productId, long sellerId, String productImage, String productDetailUrl,
                 String productTitle, String minPrice, String maxPrice, String oriMinPrice,
-                String oriMaxPrice, String discount, int promotionId, int startTime, int endTime,
-                int phase, String totalStock, String stock, boolean soldout, String orders,
-                String shopName, String shopUrl, String trace) {
+                String oriMaxPrice, String discount, long promotionId, long startTime, long endTime,
+                long phase, String totalStock, String stock, boolean soldout, String orders,
+                String shopName, String shopUrl) {
         this.productId = productId;
         this.sellerId = sellerId;
         this.productImage = productImage;
@@ -49,22 +51,22 @@ public class Item {
         this.orders = orders;
         this.shopName = shopName;
         this.shopUrl = shopUrl;
-        this.trace = trace;
+
     }
 
-    public int getProductId() {
+    public long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(long productId) {
         this.productId = productId;
     }
 
-    public int getSellerId() {
+    public long getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(int sellerId) {
+    public void setSellerId(long sellerId) {
         this.sellerId = sellerId;
     }
 
@@ -132,35 +134,35 @@ public class Item {
         this.discount = discount;
     }
 
-    public int getPromotionId() {
+    public long getPromotionId() {
         return promotionId;
     }
 
-    public void setPromotionId(int promotionId) {
+    public void setPromotionId(long promotionId) {
         this.promotionId = promotionId;
     }
 
-    public int getStartTime() {
+    public long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 
-    public int getEndTime() {
+    public long getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(long endTime) {
         this.endTime = endTime;
     }
 
-    public int getPhase() {
+    public long getPhase() {
         return phase;
     }
 
-    public void setPhase(int phase) {
+    public void setPhase(long phase) {
         this.phase = phase;
     }
 
@@ -212,13 +214,6 @@ public class Item {
         this.shopUrl = shopUrl;
     }
 
-    public String getTrace() {
-        return trace;
-    }
-
-    public void setTrace(String trace) {
-        this.trace = trace;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -244,8 +239,7 @@ public class Item {
                 getStock().equals(item.getStock()) &&
                 getOrders().equals(item.getOrders()) &&
                 getShopName().equals(item.getShopName()) &&
-                getShopUrl().equals(item.getShopUrl()) &&
-                getTrace().equals(item.getTrace());
+                getShopUrl().equals(item.getShopUrl());
     }
 
     @Override
@@ -254,7 +248,7 @@ public class Item {
                 getProductImage(), getProductDetailUrl(), getProductTitle(),
                 getMinPrice(), getMaxPrice(), getOriMinPrice(), getOriMaxPrice(),
                 getDiscount(), getPromotionId(), getStartTime(), getEndTime(), getPhase(),
-                getTotalStock(), getStock(), isSoldout(), getOrders(), getShopName(), getShopUrl(), getTrace());
+                getTotalStock(), getStock(), isSoldout(), getOrders(), getShopName(), getShopUrl());
     }
 
     @Override
@@ -263,6 +257,6 @@ public class Item {
                  productDetailUrl+", " +  productTitle+", " +  minPrice+", " + maxPrice+", " + oriMinPrice+", " +
                 oriMaxPrice+", " +  discount+", " + promotionId+", " + startTime+", " + endTime+", " + phase +
                  totalStock+", " +  stock+", " + soldout+", " +
-                 orders+", " +  shopName+", " + shopUrl+", " +  trace;
+                 orders+", " +  shopName+", " + shopUrl;
     }
 }

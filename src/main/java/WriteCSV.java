@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class WriteCSV {
-    protected void writeData(List items) {
+    protected void writeData(List<Item> items) {
+        if (items == null|| items.isEmpty() )
+            return;
 
         File file = new File("Data.csv");
         FileWriter fileWriter = null;
